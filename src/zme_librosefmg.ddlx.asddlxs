@@ -1,0 +1,72 @@
+@Search.searchable: true
+@Metadata.layer: #CORE
+annotate view ZCDS_LIBROS_EFMG with
+{
+  @UI.facet: [{ id : 'DetallesLibro',
+             label : 'Detalles del Libro',
+              type : #COLLECTION,
+          position : 10 },
+             { id  : 'Libro',
+         parentId  : 'DetallesLibro',
+            label  : 'Detalles',
+             type  : #FIELDGROUP_REFERENCE,
+  targetQualifier  : 'DetallesLibro',
+         position  : 10 },
+             { id  : 'Compradores',
+            label  : 'Compradores',
+             type  : #LINEITEM_REFERENCE,
+    targetElement  : '_clientes',
+         position  : 30 } ]
+         
+  @UI.fieldGroup : [{ qualifier : 'DetallesLibro', position : 10 }]
+  IdLibro;
+
+  @UI: {
+      lineItem : [{ position : 10, importance : #HIGH }],
+selectionField : [{ position: 10 }]}
+  Titulo;
+
+  @Search.defaultSearchElement : true
+  @Search.fuzzinessThreshold   : 0.9
+  @Search.ranking              : #HIGH
+  @UI.selectionField : [{ position : 30 }]
+  Editorial;
+
+  @UI.lineItem : [{ position : 20, importance : #HIGH}]
+  Autor;
+
+  @Consumption.valueHelpDefinition : [{
+                            entity : {    name : 'ZCDS_CATEGORIAS_EFMG',
+                                       element : 'Categoria' }}]
+  @UI : {
+  fieldGroup : [{    qualifier : 'DetallesLibro',  position : 20 }],
+  selectionField : [{ position : 20 }]}
+  Categoria;
+
+  @UI.lineItem : [{position : 30, importance : #HIGH }]
+  Formato;
+
+  @UI.lineItem : [{position : 40, importance : #HIGH }]
+  Idioma;
+
+  @UI.lineItem : [{position : 50, importance : #HIGH }]
+  @UI.fieldGroup : [{ qualifier : 'DetallesLibro', position : 30 }]
+  Paginas;
+
+  @UI.lineItem : [{position : 60, importance : #HIGH }]
+  Precio;
+
+  @UI:{
+  lineItem : [{ position : 70,
+              importance : #HIGH,
+                   value : 'Text',
+             criticality : 'Ventas' }]}
+  Ventas;
+
+  @UI.fieldGroup : [{ qualifier : 'DetallesLibro', position : 40 }]
+  Descripcion;
+
+  @UI.lineItem : [{ position : 80, importance : #HIGH }]
+  _clientes;
+
+}

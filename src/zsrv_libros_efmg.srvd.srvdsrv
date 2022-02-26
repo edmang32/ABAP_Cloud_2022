@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition Libros'
+define service ZSRV_LIBROS_EFMG {
+  expose ZCDS_LIBROS_EFMG;
+  expose ZCDS_CLIENTES_EFMG;
+}
